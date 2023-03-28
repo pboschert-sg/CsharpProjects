@@ -1,15 +1,20 @@
-﻿using System.Xml;
+﻿int heroHealth = 10, monsterHealth = 10;
 
-string output = "";
-for (int i = 1; i <= 100; ++i) {
-    output = i.ToString();
-    if (i % 15 == 0)
-        output += " FizzBuzz";
-    else {
-        if (i % 3 == 0)
-            output += " Fizz";
-        else if (i % 5 == 0)
-            output += " Buzz";
+Random attack = new Random();
+
+while (heroHealth > 0 && monsterHealth > 0) {
+    int attackValue = attack.Next(1, 11);
+    monsterHealth -= attackValue;
+    Console.WriteLine($"Monster was damaged and lost {attackValue} health and now has {monsterHealth} health.");
+    if (monsterHealth > 0) {
+        attackValue = attack.Next(1, 11);
+        heroHealth -= attackValue;
+        Console.WriteLine($"Hero was damaged and lost {attackValue} health and now has {heroHealth} health.");
     }
-    Console.WriteLine(output);
+}
+
+if(heroHealth > 0) {
+    Console.WriteLine("Hero wins!");
+} else {
+    Console.WriteLine("Monster wins!");
 }
